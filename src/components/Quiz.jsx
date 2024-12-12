@@ -88,7 +88,7 @@ function Quiz({ passedmode }) {
             </button>
           </div>
         ) : (
-          <motion.div className="max-w-md p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md dark:text-white">
+          <motion.div className="max-w-md w-1/2 h-96 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md dark:text-white flex flex-col justify-center items-center transition-all duration-500 ease-in-out">
             <h3 className="text-xl font-bold mb-4">{score >= 3 ? "Congrats!" : "Too Bad!"}</h3>
             <h2 className="text-2xl font-bold mb-2">Your Score:</h2>
             <h1 className="text-4xl font-bold">{score} / 5</h1>
