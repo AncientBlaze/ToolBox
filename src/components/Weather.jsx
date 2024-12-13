@@ -29,7 +29,7 @@ function Weather({ passedmode }) {
     }
     return (
         <div className={`${passedmode ? "dark bg-white" : "light bg-gray-900"}`}>
-            <div className="flex justify-center items-center bg-transparent h-[90vh]">
+            <div className="flex justify-center items-center bg-transparent h-screen">
                 <div className="bg-white dark:bg-[#1F2937] shadow-lg p-2 rounded-2xl w-full max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-4 text-center flex flex-col items-center justify-center transition-all duration-500 ease-in-out">
                     <header className="py-2">
                         <h1 className="text-sm font-bold transition-all duration-500 ease-in-out dark:text-white">Weather App</h1>

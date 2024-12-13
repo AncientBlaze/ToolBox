@@ -40,7 +40,7 @@ export default function ToDo({ passedmode }) {
 
   return (
     <div className={`p-20 ${passedmode ? "dark bg-white" : "light bg-gray-900"} h-screen`}>
-      <h2 className="text-2xl font-bold mb-4">To-Do List</h2>
+      <h2 className="text-2xl font-bold mb-4 text-white dark:text-black">To-Do List</h2>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -60,7 +60,7 @@ export default function ToDo({ passedmode }) {
             transition={{ duration: 0.5 }}
             className="flex items-center justify-between p-2 border-b-2 border-gray-300"
           >
-            <span className={passedmode ? "text-white" : "text-black"}>
+            <span className="text-white dark:text-black">
               {task}
             </span>
             <div className="flex gap-2">

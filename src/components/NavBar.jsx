@@ -27,8 +27,6 @@ export default function NavBar({ passedmode }) {
                             whileTap={{ scale: 0.8 }}
                         >
                             <DarkModeSwitch
-                                sunColor="yellow"
-                                moonColor="white"
                                 onDrag={() => {
                                     setMode(!mode);
                                 }}

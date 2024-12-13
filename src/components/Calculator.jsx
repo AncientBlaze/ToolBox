@@ -28,7 +28,7 @@ export default function Calculator({ passedmode }) {
 
     return (
         <div className={passedmode ? "dark bg-white" : "light bg-gray-900"}>
-            <div className={`flex justify-center items-center bg-transparent h-[70vh] font-bold *:font-mono`}>
+            <div className={`flex justify-center items-center bg-transparent h-screen font-bold *:font-mono`}>
                 <div className="bg-white/40 dark:bg-gray-800 shadow-md rounded-lg p-6 w-80">
                     <div className="mb-4 text-right">
                         <div className="flex border border-spacing-40 border-black focus:outline-none rounded-xl px-2 py-2">
