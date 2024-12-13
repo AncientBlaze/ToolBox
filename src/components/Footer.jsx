@@ -3,7 +3,6 @@ import { TiWeatherCloudy } from "react-icons/ti"
 import { FaCalculator, FaClock } from "react-icons/fa6"
 import PropTypes from 'prop-types';
 import { MdOutlineQuiz } from "react-icons/md";
-import { FcTodoList } from "react-icons/fc";
 import { CgNotes } from "react-icons/cg";
 
 function Footer({ passedmode }) {
