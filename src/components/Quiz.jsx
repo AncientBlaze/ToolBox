@@ -56,8 +56,8 @@ function Quiz({ passedmode }) {
   };
 
   return (
-    <div className={`${passedmode ? "light" : "dark"}`}>
-        <div className="flex justify-center items-center bg-transparent h-[70vh]">
+    <div className={`${passedmode ? "dark bg-white" : "light bg-gray-900"}`}>
+        <div className="flex justify-center items-center bg-transparent h-[90vh]">
         {result ? (
           <div className="max-w-md p-4 bg-stone-100 dark:bg-gray-800 rounded-lg shadow-xl">
             <h1 className="text-2xl font-bold mb-4 dark:text-white">{questionsList[currentQues]}</h1>

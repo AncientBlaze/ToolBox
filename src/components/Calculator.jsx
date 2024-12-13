@@ -27,7 +27,7 @@ export default function Calculator({ passedmode }) {
     };
 
     return (
-        <div className={passedmode ? "light" : "dark"}>
+        <div className={passedmode ? "dark bg-white" : "light bg-gray-900"}>
             <div className={`flex justify-center items-center bg-transparent h-[70vh] font-bold *:font-mono`}>
                 <div className="bg-white/40 dark:bg-gray-800 shadow-md rounded-lg p-6 w-80">
                     <div className="mb-4 text-right">
@@ -55,10 +55,10 @@ export default function Calculator({ passedmode }) {
                     <motion.div
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ ease: "easeInOut", duration: 0.5 }}
+                        transition={{ ease: "easeInOut" }}
                         className="grid grid-cols-4 gap-2"
                     >
-                        {["1", "2", "3", "/", "4", "5", "6", "*", "7", "8", "8", "-", ".", "0", "=", "+"].map((value) => (
+                        {["1", "2", "3", "/", "4", "5", "6", "*", "7", "8", "9", "-", ".", "0", "=", "+"].map((value) => (
                             <motion.button
                                 key={value}
                                 onClick={() => (value === "=" ? handleCalculate() : handleClick(value))}

@@ -1,5 +1,6 @@
 import { Link } from "react-router"
 import { motion } from "motion/react"
+import PropTypes from 'prop-types';
 
 function ErrorPage({ passedmode }) {
     return (
@@ -37,3 +38,7 @@ function ErrorPage({ passedmode }) {
 }
 
 export default ErrorPage
+
+ErrorPage.propTypes = {
+    passedmode: PropTypes.bool.isRequired,
+}

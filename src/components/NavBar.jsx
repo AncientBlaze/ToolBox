@@ -8,21 +8,12 @@ export default function NavBar({ passedmode }) {
     const [mode, setMode] = useMode();
     return (
         <div className={`${passedmode ? "light" : "dark"}`}>
-            <div className="flex justify-around items-center p-2 bg-white dark:bg-gray-800 dark:text-white gap-2">
-                <NavLink to="/">
-                    <h1 className="text-2xl font-bold">Weather App</h1>
-                </NavLink>
-                <NavLink to="/quiz">
-                    <h1 className="text-2xl font-bold">Quiz App</h1>
-                </NavLink>
-                <NavLink to="/calculator">
-                    <h1 className="text-2xl font-bold">Calculator App</h1>
-                </NavLink>
-                <div className="flex justify-center items-center">
+            <div className="flex justify-end items-center p-2 bg-white dark:bg-gray-800 dark:text-black gap-2 overflow-hidden">
+                <div className="flex">
                     <motion.button
-                        className="ml-2 cursor-pointer px-2 py-1 border-2 bg-black/50 dark:border-white border-black dark:bg-white/75 rounded-full w-16"
-                        initial={{ scale: 1 }}
-                        whileHover={{ scale: 1.05 }}
+                        className="ml-2 cursor-pointer px-2 py-1 border-2 bg-black/50 dark:border-black border-black dark:bg-white rounded-full w-16"
+                        initial={{ scale: 0.8 }}
+                        whileHover={{ scale: 0.8}}
                         whileTap={{ scale: 0.85 }}
                         transition={{ type: "spring", stiffness: 100, damping: 17 }}
                         onClick={() => setMode(!mode)}

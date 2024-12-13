@@ -7,6 +7,8 @@ import ErrorPage from './components/ErrorPage';
 import Quiz from './components/Quiz';
 import Calculator from './components/Calculator';
 import Footer from './components/Footer';
+import ToDo from './components/To-do.jsx';
+
 
 function App() {
   const [mode] = useMode(false);
@@ -18,6 +20,7 @@ function App() {
         <Route path="/" element={<Weather passedmode={mode} />} />
         <Route path="/quiz" element={<Quiz passedmode={mode} />} />
         <Route path="/calculator" element={<Calculator passedmode={mode} />} />
+        <Route path="/todo" element={<ToDo passedmode={mode} />} />
       </Routes>
       <Footer passedmode={mode}/>
     </div>
