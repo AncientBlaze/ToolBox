@@ -64,7 +64,7 @@ function Footer({ passedmode }) {
                         <span
                             className="absolute -top-12 left-[50%] -translate-x-[50%] z-20 origin-bottom scale-0 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-xs font-medium shadow-lg transition-all duration-300 ease-in-out group-hover:scale-100 dark:text-white dark:bg-gray-800"
                         >
-                            Todo list
+                            Todo
                         </span>
                     </div>
                 </NavLink>
