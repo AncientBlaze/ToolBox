@@ -34,8 +34,8 @@ function Weather({ passedmode }) {
                     <header className="py-2">
                         <h1 className="text-sm font-bold transition-all duration-500 ease-in-out dark:text-white">Weather App</h1>
                     </header>
-                    <input type="text" onChange={(e) => setstate(e.target.value)} value={state} className="border-2 border-black p-1 transition-all duration-500 ease-in-out w-full max-w-xs dark:text-white dark:bg-[#1F2937] rounded-full dark:border-white" />
-                    <button onClick={searchWeather} className="border-2 border-black rounded-sm p-1 mt-2 transition-all duration-500 ease-in-out hover:shadow-lg hover:scale-105 dark:border-white dark:bg-white dark:text-black">Get Weather</button>
+                    <input type="text" onChange={(e) => setstate(e.target.value)} value={state} className="border-2 border-blacktransition-all duration-500 ease-in-out w-full max-w-xs dark:text-white dark:bg-[#1F2937] rounded-full dark:border-white p-2 outline-none" />
+                    <button onClick={searchWeather} className="border border-black rounded-sm px-3 py-2 mt-2 transition-all duration-500 ease-in-out hover:shadow-lg hover:scale-105 dark:border-white dark:bg-white dark:text-black">Get Weather</button>
                     <motion.div className="flex justify-center items-center w-full" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ease: "easeInOut" }}>
                         {cityName.current && (
                             <motion.div className="mt-5 backdrop-filter backdrop-blur-lg border-2 bg-white dark:bg-gray-800/30 rounded-2xl w-full max-w-md h-auto p-6 shadow-2xl flex flex-col justify-center items-center transition-all duration-500 ease-in-out">
