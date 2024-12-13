@@ -1,4 +1,3 @@
-import { Link, Outlet } from 'react-router'
 import Weather from './components/Weather'
 import NavBar from './components/NavBar';
 import { useMode } from './assets/globalState';

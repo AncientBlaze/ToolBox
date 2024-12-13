@@ -46,7 +46,7 @@ function Weather({ passedmode }) {
                                     <div className="flex flex-col items-center space-y-4">
                                         <p className="text-2xl lg:text-3xl font-bold dark:text-white transition-all duration-500 ease-in-out">{weather?.main?.temp}°C</p>
                                         <img src={`https://openweathermap.org/img/wn/${weather?.weather[0]?.icon}@4x.png`} alt="weather icon" className="w-20 h-20 transition-all duration-500 ease-in-out" />
-                                        <div className="grid grid-cols-2 gap-4 text-center">
+                                        <div className="flex gap-4 text-center">
                                             <p className="text-sm lg:text-base dark:text-white transition-all duration-500 ease-in-out">Humidity: {weather?.main?.humidity}%</p>
                                             <p className="text-sm lg:text-base dark:text-white transition-all duration-500 ease-in-out">Wind: {weather?.wind?.speed} m/s</p>
                                             <p className="text-sm lg:text-base dark:text-white transition-all duration-500 ease-in-out">Clouds: {weather?.clouds?.all}%</p>

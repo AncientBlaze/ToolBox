@@ -1,6 +1,5 @@
 import { useMode } from "../assets/globalState";
 import PropTypes from 'prop-types';
-import { NavLink } from "react-router";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { motion } from "motion/react"
 
@@ -8,7 +7,7 @@ export default function NavBar({ passedmode }) {
     const [mode, setMode] = useMode();
     return (
         <div className={`${passedmode ? "light" : "dark"}`}>
-            <div className="flex justify-end items-center p-2 bg-white dark:bg-gray-800 dark:text-black gap-2 overflow-hidden">
+            <div className="fixed dark:text-black gap-2 right-0 top-2">
                 <div className="flex">
                     <motion.button
                         className="ml-2 cursor-pointer px-2 py-1 border-2 bg-black/50 dark:border-black border-black dark:bg-white rounded-full w-16"
