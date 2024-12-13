@@ -38,7 +38,7 @@ function Weather({ passedmode }) {
                     <button onClick={searchWeather} className="border-2 border-black rounded-sm p-1 mt-2 transition-all duration-500 ease-in-out hover:animate-pulse hover:shadow-lg hover:scale-105 dark:border-white dark:bg-white dark:text-black">Get Weather</button>
                     <motion.div className="flex justify-center items-center w-full" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ ease: "easeInOut" }}>
                         {cityName.current && (
-                            <motion.div className="mt-5 backdrop-filter backdrop-blur-lg bg-white/30 dark:bg-gray-800/30 rounded-2xl w-full max-w-md h-auto p-6 shadow-lg flex flex-col justify-center items-center transition-all duration-500 ease-in-out">
+                            <motion.div className="mt-5 backdrop-filter backdrop-blur-lg border-2 bg-white dark:bg-gray-800/30 rounded-2xl w-full max-w-md h-auto p-6 shadow-2xl flex flex-col justify-center items-center transition-all duration-500 ease-in-out">
                                 <h2 className="text-lg lg:text-xl font-bold dark:text-white transition-all duration-500 ease-in-out">{String(cityName.current).toUpperCase()}</h2>
                                 {weather?.cod === "404" ? (
                                     <motion.p className="lg:text-base text-sm text-red-600 dark:text-red-400 transition-all duration-500 ease-in-out">City not found</motion.p>
@@ -47,9 +47,9 @@ function Weather({ passedmode }) {
                                         <p className="text-2xl lg:text-3xl font-bold dark:text-white transition-all duration-500 ease-in-out">{weather?.main?.temp}°C</p>
                                         <img src={`https://openweathermap.org/img/wn/${weather?.weather[0]?.icon}@4x.png`} alt="weather icon" className="w-20 h-20 transition-all duration-500 ease-in-out" />
                                         <div className="flex gap-4 text-center">
-                                            <p className="text-sm lg:text-base dark:text-white transition-all duration-500 ease-in-out">Humidity: {weather?.main?.humidity}%</p>
-                                            <p className="text-sm lg:text-base dark:text-white transition-all duration-500 ease-in-out">Wind: {weather?.wind?.speed} m/s</p>
-                                            <p className="text-sm lg:text-base dark:text-white transition-all duration-500 ease-in-out">Clouds: {weather?.clouds?.all}%</p>
+                                            <p className="text-sm lg:text-base dark:text-white transition-all duration-500 ease-in-out">Humidity {weather?.main?.humidity}%</p>
+                                            <p className="text-sm lg:text-base dark:text-white transition-all duration-500 ease-in-out">Wind {weather?.wind?.speed} m/s</p>
+                                            <p className="text-sm lg:text-base dark:text-white transition-all duration-500 ease-in-out">Clouds {weather?.clouds?.all}%</p>
                                             <p className="text-sm lg:text-base dark:text-white transition-all duration-500 ease-in-out">Description: {weather?.weather?.[0]?.description}</p>
                                         </div>
                                     </div>
