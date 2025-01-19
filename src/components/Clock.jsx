@@ -18,6 +18,7 @@ function Clock({ passedmode }) {
                 <p className='font-mono text-white dark:text-black text-5xl border-2 dark:border-black px-20 py-10'>
                     {time.split(":")[0] < 10 ? "0" + time : time}
                 </p>
+                <p className='font-mono text-white text-3xl text-center mt-5 dark:text-black'>{new Date().toLocaleDateString()}</p>
             </div>
         </div>
         </div>

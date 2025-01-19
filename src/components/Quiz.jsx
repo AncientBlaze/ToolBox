@@ -1,112 +1,149 @@
-import { useState } from "react";
-import PropTypes from 'prop-types';
-import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 
+// eslint-disable-next-line react/prop-types
 function Quiz({ passedmode }) {
-  const questionsList = {
-    1: "What is the standard markup language for creating web pages?",
-    2: "Which language is used for styling web pages?",
-    3: "Which of the following is a JavaScript framework?",
-    4: "What does CSS stand for?",
-    5: "Which HTML tag is used to define an internal style sheet?",
-  };
+    const [details, setDetails] = useState(null);
+    const [counter, setCounter] = useState(0);
+    const [score, setScore] = useState(0);
+    const [isActive, setIsActive] = useState(false);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [showResult, setShowResult] = useState(false);
 
-  const ansList = {
-    1: ["PHP", "HTML", "CSS", "JavaScript"],
-    2: ["Python", "SQL", "CSS", "JavaScript"],
-    3: ["Django", "Laravel", "React", "Flask"],
-    4: ["Cascading Style Sheets", "Creative Style Sheets", "Computer Style Sheets", "Colorful Style Sheets"],
-    5: ["<style>", "<script>", "<head>", "<link>"],
-  };
+    const fetchData = async () => {
+        try {
+            const response = await fetch(
+                "https://the-trivia-api.com/v2/questions",
+            );
+            const data = await response.json();
+            setDetails(data);
+        } catch (error) {
+            console.error("Error fetching questions:", error);
+        }
+    };
 
-  const rightAns = {
-    1: "HTML",
-    2: "CSS",
-    3: "React",
-    4: "Cascading Style Sheets",
-    5: "<style>",
-  };
+    useEffect(() => {
+        fetchData();
+    }, []);
 
-  const [currentQues, setCurrentQues] = useState(1);
-  const [isActive, setIsActive] = useState(false);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
-  const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
-  const [result, setResult] = useState(true);
-  const [score, setScore] = useState(0);
+    const checkAnsAndUpdate = () => {
+        setIsActive(false);
+        setSelectedAnswer(null); // Reset the selected answer for the next question
+        if (counter < details.length - 1) {
+            setCounter(counter + 1);
+        } else {
+            setShowResult(true);
+        }
+    };
 
-  const handleChange = () => {
-    if (currentQues === 5) {
-      setResult(false);
-    } else {
-      setCurrentQues(currentQues + 1);
-      setIsActive(false);
-      setSelectedAnswer(null);
-      setShowCorrectAnswer(false);
-    }
-  };
+    const checkAnswer = (ans) => {
+        if (!isActive) {
+            setIsActive(true);
+            setSelectedAnswer(ans); // Track the selected answer
+            if (ans === details[counter].correctAnswer) {
+                setScore(score + 1);
+            }
+        }
+    };
 
-  const scoreUpdate = (ans) => {
-    setSelectedAnswer(ans);
-    if (ans === rightAns[currentQues]) {
-      setScore(score + 1);
-    } else {
-      setShowCorrectAnswer(true);
-    }
-    setIsActive(true);
-  };
-
-  return (
-    <div className={`${passedmode ? "dark bg-white" : "light bg-gray-900"}`}>
-        <div className="flex justify-center items-center bg-transparent h-screen">
-        {result ? (
-          <div className="max-w-md p-4 bg-stone-100 dark:bg-gray-800 rounded-lg shadow-xl">
-            <h1 className="text-2xl font-bold mb-4 dark:text-white">{questionsList[currentQues]}</h1>
-            <div className="space-y-4">
-              {ansList[currentQues].map((ans, index) => (
-                <button
-                  key={index}
-                  disabled={isActive}
-                  onClick={() => scoreUpdate(ans)}
-                  className={`w-full py-2 px-4 rounded-md transition-colors dark:text-white border-2 ${selectedAnswer === ans
-                      ? ans === rightAns[currentQues]
-                        ? "bg-green-500 text-white"
-                        : "bg-red-500 text-white"
-                      : showCorrectAnswer && ans === rightAns[currentQues]
-                        ? "bg-green-500 text-green-700"
-                        : "bg-white hover:bg-gray-100 dark:hover:bg-gray-700 dark:bg-gray-800"
-                    }`}
+    return (
+        <div
+            className={`p-16 ${passedmode ? "bg-white" : "bg-gray-900"} h-auto`}
+        >
+            {details && details.length > 0 ? (
+                <div
+                    className={`w-full h-auto py-20 ${
+                        passedmode ? "bg-white" : "bg-gray-900"
+                    } flex justify-center items-start border-2 border-blue-400 rounded-2xl`}
                 >
-                  {ans}
-                </button>
-              ))}
-            </div>
-            <button
-              className="w-full py-2 px-4 mt-4 rounded-md bg-blue-500 text-white hover:bg-blue-700"
-              onClick={handleChange}
-            >
-              {currentQues === 5 ? "Submit" : "Next"}
-            </button>
-          </div>
-        ) : (
-          <motion.div className="max-w-md w-1/2 h-96 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md dark:text-white flex flex-col justify-center items-center transition-all duration-500 ease-in-out">
-            <h3 className="text-xl font-bold mb-4">{score >= 3 ? "Congrats!" : "Too Bad!"}</h3>
-            <h2 className="text-2xl font-bold mb-2">Your Score:</h2>
-            <h1 className="text-4xl font-bold">{score} / 5</h1>
-            <button
-              className="w-full py-2 px-4 mt-4 rounded-md bg-blue-500 text-white hover:bg-blue-700"
-              onClick={() => window.location.reload()}
-            >
-              Refresh
-            </button>
-          </motion.div>
-        )}
-      </div>
-    </div>
-  );
+                    {showResult ? (
+                        <div className="text-center">
+                            <p
+                                className={`text-4xl font-bold mb-4 ${
+                                    passedmode ? "text-black" : "text-white"
+                                }`}
+                            >
+                                Result: {score} / {details.length}
+                            </p>
+                            <p
+                                className={`text-2xl ${
+                                    passedmode
+                                        ? "text-gray-800"
+                                        : "text-gray-300"
+                                }`}
+                            >
+                                {score > details.length / 2
+                                    ? "Well done!"
+                                    : "Better luck next time!"}
+                            </p>
+                        </div>
+                    ) : (
+                        <div className="w-3/4 h-auto flex flex-col">
+                            <p
+                                className={`text-3xl ${
+                                    passedmode ? "text-black" : "text-white"
+                                } mb-10`}
+                            >
+                                <span className="text-blue-400">
+                                    {counter + 1} .{" "}
+                                </span>
+                                {details[counter].question.text}
+                            </p>
+                            <div className="w-full h-auto flex flex-col gap-5 mb-10">
+                                {details[counter].incorrectAnswers
+                                    .concat(details[counter].correctAnswer)
+                                    .sort()
+                                    .map((answer, index) => (
+                                        <button
+                                            disabled={isActive}
+                                            onClick={() => checkAnswer(answer)}
+                                            className={`w-full h-auto px-5 py-2 text-start border border-blue-400 rounded-2xl text-lg transition-all duration-500 ease-in-out hover:shadow-lg hover:scale-105 ${
+                                                isActive
+                                                    ? details[counter]
+                                                          .correctAnswer ===
+                                                      answer
+                                                        ? "bg-green-400 text-white"
+                                                        : selectedAnswer ===
+                                                          answer
+                                                        ? "bg-red-400 text-white"
+                                                        : "bg-white"
+                                                    : passedmode
+                                                    ? "bg-transparent text-black"
+                                                    : "bg-transparent text-white"
+                                            }`}
+                                            key={index}
+                                        >
+                                            {answer}
+                                        </button>
+                                    ))}
+                            </div>
+                            <button
+                                className={`w-full h-auto px-5 py-2 rounded-lg font-medium ${
+                                    passedmode
+                                        ? "text-white bg-black"
+                                        : "text-black bg-white"
+                                }`}
+                                onClick={checkAnsAndUpdate}
+                            >
+                                {counter < details.length - 1
+                                    ? "Next"
+                                    : "Submit"}
+                            </button>
+                        </div>
+                    )}
+                </div>
+            ) : (
+                <div
+                    className={`w-full h-screen ${
+                        passedmode ? "bg-white" : "bg-gray-900"
+                    } flex justify-center items-center`}
+                >
+                    <p className="text-4xl font-medium text-red-400">
+                        Loading...
+                    </p>
+                </div>
+            )}
+        </div>
+    );
 }
 
 export default Quiz;
-
-Quiz.propTypes = {
-  passedmode: PropTypes.bool.isRequired,
-}
