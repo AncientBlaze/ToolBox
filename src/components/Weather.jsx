@@ -129,8 +129,8 @@ function Weather({ passedmode }) {
                                 {adWeather.hourly.temperature_2m.map((item, index) => (
                                     (index % 3 === 0) && (index <= 23) ? ( // Check if index is in the desired sequence
                                         <div key={index} className="w-[14%] h-20 flex flex-col rounded-xl py-5 justify-between">
-                                            <p className='text-white text-2xl text-center'>{item}°C</p> {/* Display the temperature */}
-                                            <p className='text-xs w-full text-center text-white'>
+                                            <p className='text-2xl text-center text-black'>{item}°C</p> {/* Display the temperature */}
+                                            <p className='text-xs w-full text-center text-black'>
                                                 {new Date(adWeather.hourly.time[index]).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
                                             </p> {/* Display only the time */}
                                         </div>
